@@ -26,18 +26,18 @@ O sistema deve ter uma funcionalidade adicional de segurança, que solicita auto
 3. Sistema solicita a agência e conta de destino da transferência, e o usuário informa.
 4. Sistema solicita a quantidade a ser transferida, e o usuário informa.
 5. Caso haja saldo suficiente na conta de origem
-  * **Caso a solicitação seja feita em uma agência, ou seja, feita em um caixa eletrônico e a quantidade a ser transferida seja inferior a R$5.000,00:**
+  * **Caso a solicitação seja feita em uma agência, ou seja, feita em um caixa eletrônico e a quantidade a ser transferida seja inferior a R$5.000,00:** :100:
     * Sistema debita o valor a ser transferido da conta de origem;
     * Sistema credita o valor a ser transferido para a conta de destino;
     * Sistema registra a transação com estado FINALIZADA em ambas as contas de origem e de destino.  
   * **Caso a solicitação seja feita em um caixa eletrônico e a quantidade a ser transferida seja superior
-ou igual à R$5.000,00:**
+ou igual à R$5.000,00:** :100:
     * Sistema debita o valor a ser transferido da conta de origem
     * Sistema registra a transação com estado PENDENTE na conta de origem
 6. Caso não haja saldo suficiente na conta de origem, sistema informa que não é possível realizar a transação.
 7. Sistema exibe o status da operação.
 8. Sistema retorna ao menu principal.
-
+:100:
 
 Além da modificação na operação de transferência, o sistema tem uma nova funcionalidade: autorizar transferência.
 Esta funcionalidade deve funcionar da seguinte forma.
@@ -46,11 +46,11 @@ Esta funcionalidade deve funcionar da seguinte forma.
 3. Funcionário seleciona uma transferência PENDENTE.
 4. Sistema exibe a transferência selecionada, informando conta de origem, conta de destino, e valor, e solicita a autorização do funcionário.
 5. Caso o funcionário autorize a transferência
-  * Sistema credita o valor a ser transferido para a conta de destino
-  * Sistema altera a transação para estado FINALIZADA na conta de origem
-  * Sistema registra a transação com estado FINALIZADA na conta de destino
+    * Sistema credita o valor a ser transferido para a conta de destino
+    * Sistema altera a transação para estado FINALIZADA na conta de origem
+    * Sistema registra a transação com estado FINALIZADA na conta de destino
 6. Caso o funcionário não autorize a transferência
-  * Sistema credita o valor a ser transferido de volta para a conta de origem
-  * Sistema altera a transação para estado CANCELADA na conta de origem
+    * Sistema credita o valor a ser transferido de volta para a conta de origem
+    * Sistema altera a transação para estado CANCELADA na conta de origem
 7. Sistema exibe o status da operação.
 8. Sistema retorna ao menu principal.

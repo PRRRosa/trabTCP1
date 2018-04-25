@@ -43,7 +43,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		//to implement
 	}
 	
-	public Transfer chosePendingTransfer() {
+	public Transfer choosePendingTransfer() {
 		//to implement
 		return new Transfer(null, null, null, 0);
 	}

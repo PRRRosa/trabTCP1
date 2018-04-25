@@ -111,7 +111,7 @@ public class Database {
 			save(atm3);
 
 			//PendingTransferList
-			this.pendingTransactionList = new ArrayList<Transfer>(null);
+			//this.pendingTransactionList = new ArrayList<Transfer>(null);
 			
 			// Employee
 			Employee employee = new Employee("Ingrid", "Nunes", "ingrid",

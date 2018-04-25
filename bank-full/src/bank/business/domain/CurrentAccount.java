@@ -124,6 +124,15 @@ public class CurrentAccount implements Credentials {
 
 		return transfer;
 	}
+	
+	public Transfer pendingTransfer(OperationLocation location,CurrentAccount destinationAccount, double amount)throws BusinessException  {
+		withdrawalAmount(amount);
+		Transfer transfer = new Transfer(location, this, destinationAccount,amount);
+		transfer.setPending();
+		this.transfers.add(transfer);
+
+		return transfer;
+	}
 
 	public Withdrawal withdrawal(OperationLocation location, double amount)
 			throws BusinessException {

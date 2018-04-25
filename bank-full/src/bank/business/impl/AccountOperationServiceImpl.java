@@ -28,6 +28,7 @@ import bank.data.Database;
  */
 public class AccountOperationServiceImpl implements AccountOperationService {
 
+	private static final double TRANSFER_MAX = 5000;
 	private final Database database;
 
 	public AccountOperationServiceImpl(Database database) {
@@ -166,8 +167,14 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		CurrentAccount source = readCurrentAccount(srcBranch, srcAccountNumber);
 		CurrentAccount destination = readCurrentAccount(dstBranch,
 				dstAccountNumber);
-		Transfer transfer = source.transfer(
-				getOperationLocation(operationLocation), destination, amount);
+		Transfer transfer;
+		if(amount<=TRANSFER_MAX) {
+			transfer = source.transfer(
+					getOperationLocation(operationLocation), destination, amount);
+		}else {
+			transfer = source.pendingTransfer(
+					getOperationLocation(operationLocation), destination, amount);
+		}
 		return transfer;
 	}
 

@@ -130,7 +130,6 @@ public class CurrentAccount implements Credentials {
 		Transfer transfer = new Transfer(location, this, destinationAccount,amount);
 		transfer.setPending();
 		this.transfers.add(transfer);
-		destinationAccount.transfers.add(transfer);
 
 		return transfer;
 	}

@@ -25,6 +25,10 @@ public class Transfer extends Transaction {
 	public void setPending() {
 		status=TransferStatus.PENDING;
 	}
+	
+	public TransferStatus getStatus() {
+		return status;
+	}
 
 	public Transfer(OperationLocation location, CurrentAccount account,
 			CurrentAccount destinationAccount, double amount) {
@@ -38,5 +42,7 @@ public class Transfer extends Transaction {
 	public CurrentAccount getDestinationAccount() {
 		return destinationAccount;
 	}
+
+
 
 }

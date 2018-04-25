@@ -3,6 +3,8 @@
  */
 package bank.data;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -21,6 +23,8 @@ import bank.business.domain.CurrentAccountId;
 import bank.business.domain.Employee;
 import bank.business.domain.OperationLocation;
 import bank.business.domain.Transaction;
+import bank.business.domain.Transfer;
+
 
 /**
  * @author Ingrid Nunes
@@ -32,6 +36,7 @@ public class Database {
 	private final Map<String, Employee> employees;
 	private final Log log;
 	private final Map<Long, OperationLocation> operationLocations;
+	private List<Transfer> pendingTransactionList;
 
 	public Database() {
 		this(true);
@@ -45,6 +50,10 @@ public class Database {
 		if (initData) {
 			initData();
 		}
+	}
+	
+	public void deletePendingTransaction(int pendingTransferIndex) {
+		this.getPendingTransferList().remove(pendingTransferIndex);
 	}
 
 	public Collection<CurrentAccount> getAllCurrentAccounts() {
@@ -76,6 +85,15 @@ public class Database {
 	public OperationLocation getOperationLocation(long number) {
 		return operationLocations.get(number);
 	}
+	
+	public Transfer getPendingTransfer(int pendingTransferIndex) {
+		Transfer pendingTransfer = this.getPendingTransferList().get(pendingTransferIndex);
+		return pendingTransfer;
+	}
+	
+	public List<Transfer> getPendingTransferList() {
+		return this.getPendingTransferList();
+	}
 
 	private void initData() {
 		try {
@@ -92,6 +110,9 @@ public class Database {
 			ATM atm3 = new ATM(++olId);
 			save(atm3);
 
+			//PendingTransferList
+			this.pendingTransactionList = new ArrayList<Transfer>(null);
+			
 			// Employee
 			Employee employee = new Employee("Ingrid", "Nunes", "ingrid",
 					"123", new Date());
@@ -135,6 +156,10 @@ public class Database {
 			log.error(e);
 			e.printStackTrace();
 		}
+	}
+	
+	public void insertPendingTransaction(Transaction transaction) {
+		this.getPendingTransferList().add((Transfer)transaction);
 	}
 
 	private void changeDate(Transaction t, Random r, Calendar cal) {

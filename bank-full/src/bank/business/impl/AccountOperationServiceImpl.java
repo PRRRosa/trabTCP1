@@ -33,6 +33,19 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	public AccountOperationServiceImpl(Database database) {
 		this.database = database;
 	}
+	
+	public void authenticateTransaction(int transferIndex) {
+		//to implement
+	}
+	
+	public void cancelTransaction(int transferIndex) {
+		//to implement
+	}
+	
+	public Transfer chosePendingTransfer() {
+		//to implement
+		return new Transfer(null, null, null, 0);
+	}
 
 	@Override
 	public Deposit deposit(long operationLocation, long branch,
@@ -115,6 +128,10 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 
 		return getStatementByDate(readCurrentAccount(branch, accountNumber),
 				firstDay.getTime(), lastDay.getTime());
+	}
+	
+	public List<Transfer> listPendingTransfers() {
+		return database.getPendingTransferList();
 	}
 
 	@Override

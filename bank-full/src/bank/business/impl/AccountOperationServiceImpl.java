@@ -37,7 +37,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		this.database = database;
 	}
 
-	
+	/*
 	public void authenticateTransaction(int transferIndex) {
 		for(Iterator<Transfer> transferSearch = database.getCurrentAccount(database.getPendingTransfer(transferIndex).getAccount().getId()).getTransfers().iterator(); transferSearch.hasNext();) {
 			if(transferSearch.next().equals(database.getPendingTransfer(transferIndex))) {
@@ -57,7 +57,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 			}
 		}
 		}
-
+*/
 	
 	public void cancelTransfer(int transferIndex,double value) throws BusinessException {
 		Transfer transfer =database.getPendingTransfer(transferIndex);

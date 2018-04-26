@@ -48,13 +48,30 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	
 	}
 	
+
 	public void cancelTransaction(int transferIndex) {
 		for(Iterator<Transfer> transferSearch = database.getCurrentAccount(database.getPendingTransfer(transferIndex).getAccount().getId()).getTransfers().iterator(); transferSearch.hasNext();) {
 			if(transferSearch.next().equals(database.getPendingTransfer(transferIndex))) {
 				database.deletePendingTransaction(transferIndex);
-				transferSearch.next().setCancelled();
+				transferSearch.next().setCanceled();
 			}
 		}
+		}
+
+	
+	public void cancelTransfer(int transferIndex,double value) throws BusinessException {
+		Transfer transfer =database.getPendingTransfer(transferIndex);
+		CurrentAccount originAccount=transfer.getAccount();
+		originAccount.cancelTransfer(transfer, value);
+		database.deletePendingTransaction(transferIndex);
+	}
+	
+	public void authenticateTransfer(int transferIndex,double value) throws BusinessException {
+		Transfer transfer =database.getPendingTransfer(transferIndex);
+		CurrentAccount originAccount=transfer.getAccount();
+		originAccount.finalizeTransfer(transfer, value);
+		database.deletePendingTransaction(transferIndex);
+
 	}
 	
 

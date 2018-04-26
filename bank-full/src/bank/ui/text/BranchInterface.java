@@ -3,6 +3,7 @@ package bank.ui.text;
 import bank.business.AccountManagementService;
 import bank.business.AccountOperationService;
 import bank.business.domain.Branch;
+import bank.ui.text.command.AuthenticateTransactionCommand;
 import bank.ui.text.command.BalanceCommand;
 import bank.ui.text.command.CreateAccountCommand;
 import bank.ui.text.command.DepositCommand;
@@ -35,6 +36,7 @@ public class BranchInterface extends BankTextInterface {
 		this.addAction("T", new TransferCommand(this, accountOperationService));
 		this.addAction("O", new LogoutCommand(this));
 		this.addAction("P", new ListPendingTransferCommand(this,accountOperationService));
+		this.addAction("A", new AuthenticateTransactionCommand(this, accountOperationService));
 	}
 
 	@Override

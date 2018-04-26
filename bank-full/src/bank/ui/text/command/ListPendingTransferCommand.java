@@ -19,8 +19,8 @@ public class ListPendingTransferCommand extends Command {
 		this.accountOperationService = accountOperationService;
 	}
 	public void execute() throws Exception {
-		Long srcBranch = bankInterface.readBranchId();
-		Long srcAccountNumber = bankInterface.readCurrentAccountNumber();
+		//Long srcBranch = bankInterface.readBranchId();
+		//Long srcAccountNumber = bankInterface.readCurrentAccountNumber();
 
 
 		//List<Transfer> PendingTransfer = accountOperationService.listPendingTransfers(srcBranch,srcAccountNumber);
@@ -29,14 +29,13 @@ public class ListPendingTransferCommand extends Command {
 			System.out.println("Nenhuma Pendencia");
 		}
 		else {
-		for(int i=0;i<PendingTransfer.size();i++) {
-			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-			System.out.println(PendingTransfer.get(i)+ ":");
-			System.out.println("Valor"+ ":" +  Double.toString(PendingTransfer.get(i).getAmount()));
-			System.out.println("Data" + ":" + df.format(PendingTransfer.get(i).getDate()));
-			System.out.println("Localiza��o"+":"+ PendingTransfer.get(i).getAccount().toString());
-			
-		}
+			for(int i=0;i<PendingTransfer.size();i++) {
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+				System.out.println(PendingTransfer.get(i)+ ":");
+				System.out.println("Valor"+ ":" +  Double.toString(PendingTransfer.get(i).getAmount()));
+				System.out.println("Data" + ":" + df.format(PendingTransfer.get(i).getDate()));
+				System.out.println("Localiza��o"+":"+ PendingTransfer.get(i).getAccount().toString());	
+			}
 		}
 		
 	}

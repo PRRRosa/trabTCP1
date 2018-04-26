@@ -34,7 +34,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	public AccountOperationServiceImpl(Database database) {
 		this.database = database;
 	}
-
+      
 	@Override
 	public Deposit deposit(long operationLocation, long branch,
 			long accountNumber, long envelope, double amount)
@@ -160,7 +160,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		}
 		return transfer;
 	}
-
+  @O
 	@Override
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException {

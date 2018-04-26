@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="bank-full/src"/>
+	<classpathentry kind="lib" path="bank-full/libs/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="bank-full/libs/log4j-1.2.15.jar"/>
+	<classpathentry kind="output" path="bank-full/bin"/>
+</classpath>

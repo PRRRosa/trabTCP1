@@ -7,6 +7,7 @@ import bank.ui.text.command.BalanceCommand;
 import bank.ui.text.command.CreateAccountCommand;
 import bank.ui.text.command.DepositCommand;
 import bank.ui.text.command.EmployeeLoginCommand;
+import bank.ui.text.command.ListPendingTransferCommand;
 import bank.ui.text.command.LogoutCommand;
 import bank.ui.text.command.StatementCommand;
 import bank.ui.text.command.TransferCommand;
@@ -33,6 +34,7 @@ public class BranchInterface extends BankTextInterface {
 				new WithdrawalCommand(this, accountOperationService));
 		this.addAction("T", new TransferCommand(this, accountOperationService));
 		this.addAction("O", new LogoutCommand(this));
+		this.addAction("P", new ListPendingTransferCommand(this,accountOperationService));
 	}
 
 	@Override

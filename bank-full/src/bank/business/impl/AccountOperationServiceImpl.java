@@ -3,10 +3,12 @@
  */
 package bank.business.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,16 +39,25 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	
 	public void authenticateTransaction(int transferIndex) {
 		//to implement
+		//database.getPendingTransfer(transferIndex)
+	
 	}
 	
 	public void cancelTransaction(int transferIndex) {
-		//to implement
+		for(Iterator<Transfer> transferSearch = database.getCurrentAccount(database.getPendingTransfer(transferIndex).getAccount().getId()).getTransfers().iterator(); transferSearch.hasNext();) {
+			if(transferSearch.next().equals(database.getPendingTransfer(transferIndex))) {
+				database.deletePendingTransaction(transferIndex);
+				transferSearch.next().setCancelled();
+			}
+		}
+		
+		
 	}
-	
+	/*
 	public Transfer choosePendingTransfer() {
 		//to implement
 		return new Transfer(null, null, null, 0);
-	}
+	}*/
 
 	@Override
 	public Deposit deposit(long operationLocation, long branch,
@@ -168,12 +179,14 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		CurrentAccount destination = readCurrentAccount(dstBranch,
 				dstAccountNumber);
 		Transfer transfer;
-		if(amount<=TRANSFER_MAX) {
+		if(amount<TRANSFER_MAX) {
 			transfer = source.transfer(
 					getOperationLocation(operationLocation), destination, amount);
 		}else {
+			
 			transfer = source.pendingTransfer(
 					getOperationLocation(operationLocation), destination, amount);
+			database.insertPendingTransaction(transfer);
 		}
 		return transfer;
 	}

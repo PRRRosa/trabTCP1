@@ -55,11 +55,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 			}
 		}
 	}
-	/*
-	public Transfer choosePendingTransfer() {
-		//to implement
-		return new Transfer(null, null, null, 0);
-	}*/
+	
 
 	@Override
 	public Deposit deposit(long operationLocation, long branch,

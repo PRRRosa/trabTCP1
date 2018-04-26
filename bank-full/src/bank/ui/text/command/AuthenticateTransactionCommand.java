@@ -21,7 +21,7 @@ public class AuthenticateTransactionCommand extends Command{
 	@Override
 	public void execute() throws Exception {
 		// TODO Auto-generated method stub
-		Scanner accountIndex = new Scanner(System.in);
+		Scanner inputReader = new Scanner(System.in);
 		List<Transfer> PendingTransfer = accountOperationService.listPendingTransfers();
 		if(PendingTransfer.size()==0) {
 			System.out.println("Nenhuma Pendencia");
@@ -33,10 +33,24 @@ public class AuthenticateTransactionCommand extends Command{
 				System.out.print(i + ": ");
 				System.out.print("Valor"+ ":" +  Double.toString(PendingTransfer.get(i).getAmount()) + " ");
 				System.out.print("Data" + ":" + df.format(PendingTransfer.get(i).getDate()) + " ");
-				System.out.println("Localiza��o"+":"+ PendingTransfer.get(i).getAccount().toString());	
+				System.out.println("Localização"+":"+ PendingTransfer.get(i).getAccount().toString());	
 			}
 			
-			int transferIndex = accountIndex.nextInt();
+			int transferIndex = inputReader.nextInt();
+			if(transferIndex < 0 || transferIndex >=PendingTransfer.size()) {
+				System.out.println("Valor inválido");
+			}else {
+				System.out.println("O que deseja fazer com essa transação?");
+				System.out.println("1 - Autorizar\n2 - Cancelar");
+				int operationSelection = inputReader.nextInt();
+				if(operationSelection != 1 && operationSelection != 2) {
+					System.out.println("Valor inválido");
+				}else if(operationSelection == 1){
+						accountOperationService.authenticateTransfer(transferIndex, PendingTransfer.get(transferIndex).getAmount());
+					}else {
+						accountOperationService.cancelTransfer(transferIndex, PendingTransfer.get(transferIndex).getAmount());
+					}
+			}
 		}
 		
 	}

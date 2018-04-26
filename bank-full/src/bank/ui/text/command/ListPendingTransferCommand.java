@@ -34,7 +34,7 @@ public class ListPendingTransferCommand extends Command {
 				System.out.println(PendingTransfer.get(i)+ ":");
 				System.out.println("Valor"+ ":" +  Double.toString(PendingTransfer.get(i).getAmount()));
 				System.out.println("Data" + ":" + df.format(PendingTransfer.get(i).getDate()));
-				System.out.println("Localiza��o"+":"+ PendingTransfer.get(i).getAccount().toString());	
+				System.out.println("Localização"+":"+ PendingTransfer.get(i).getAccount().toString());	
 			}
 		}
 		

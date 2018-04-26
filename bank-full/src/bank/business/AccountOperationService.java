@@ -41,6 +41,8 @@ public interface AccountOperationService {
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException;
     public List<Transfer> listPendingTransfers() throws BusinessException;
+    public void cancelTransfer(int transferIndex,double value) throws BusinessException;
+    public void authenticateTransfer(int transferIndex,double value) throws BusinessException;
     
 
 }

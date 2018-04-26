@@ -38,8 +38,12 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	}
 	
 	public void authenticateTransaction(int transferIndex) {
-		//to implement
-		//database.getPendingTransfer(transferIndex)
+		for(Iterator<Transfer> transferSearch = database.getCurrentAccount(database.getPendingTransfer(transferIndex).getAccount().getId()).getTransfers().iterator(); transferSearch.hasNext();) {
+			if(transferSearch.next().equals(database.getPendingTransfer(transferIndex))) {
+				//transferSearch.next().getAccount().finallizeTransfer(transferSearch.next());
+				database.deletePendingTransaction(transferIndex);
+			}
+		}
 	
 	}
 	
@@ -50,8 +54,6 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 				transferSearch.next().setCancelled();
 			}
 		}
-		
-		
 	}
 	/*
 	public Transfer choosePendingTransfer() {

@@ -133,6 +133,42 @@ public class CurrentAccount implements Credentials {
 
 		return transfer;
 	}
+	
+	public void finalizeTransfer(Transfer transfer,double amount) throws BusinessException{
+		CurrentAccount destinationAccount=transfer.getDestinationAccount();
+		destinationAccount.depositAmount(amount);
+		setTransferFinalized(transfer);
+		transfer.setFinalized();
+		destinationAccount.transfers.add(transfer);
+		
+	}
+
+	private void setTransferFinalized(Transfer transfer) {
+		int transferIndex = getTransferIndex(transfer);
+		transfers.get(transferIndex).setFinalized();
+		
+	}
+
+	private int getTransferIndex(Transfer transfer) {
+		int transferIndex=-1;
+		for(int currentTransferIndex = 0; currentTransferIndex < transfers.size(); currentTransferIndex++) {
+			Transfer accountTransfer=transfers.get(currentTransferIndex);
+			if(accountTransfer==transfer)
+				transferIndex=currentTransferIndex;
+		}
+		return transferIndex;
+	}
+	
+	public void cancelTransfer(Transfer transfer,double value) throws BusinessException {
+		depositAmount(value);
+		setTransferCanceled(transfer);
+	}
+
+	private void setTransferCanceled(Transfer transfer) {
+		int transferIndex = getTransferIndex(transfer);
+		transfers.get(transferIndex).setCanceled();
+		
+	}
 
 	public Withdrawal withdrawal(OperationLocation location, double amount)
 			throws BusinessException {

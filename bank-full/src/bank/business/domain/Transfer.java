@@ -9,7 +9,7 @@ public class Transfer extends Transaction {
 	private CurrentAccount destinationAccount;
 	
 	public enum TransferStatus{
-		FINALIZED,PENDING,CANCELLED
+		FINALIZED,PENDING,CANCELED
 	}
 	
 	private TransferStatus status;
@@ -18,8 +18,8 @@ public class Transfer extends Transaction {
 		status=TransferStatus.FINALIZED;
 	}
 
-	public void setCancelled() {
-		status=TransferStatus.CANCELLED;
+	public void setCanceled() {
+		status=TransferStatus.CANCELED;
 	}
 	
 	public void setPending() {

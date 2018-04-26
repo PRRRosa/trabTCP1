@@ -19,11 +19,7 @@ public class ListPendingTransferCommand extends Command {
 		this.accountOperationService = accountOperationService;
 	}
 	public void execute() throws Exception {
-		//Long srcBranch = bankInterface.readBranchId();
-		//Long srcAccountNumber = bankInterface.readCurrentAccountNumber();
 
-
-		//List<Transfer> PendingTransfer = accountOperationService.listPendingTransfers(srcBranch,srcAccountNumber);
 		List<Transfer> PendingTransfer = accountOperationService.listPendingTransfers();
 		if(PendingTransfer.size()==0) {
 			System.out.println("Nenhuma Pendencia");

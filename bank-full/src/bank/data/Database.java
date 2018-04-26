@@ -92,7 +92,7 @@ public class Database {
 	}
 	
 	public List<Transfer> getPendingTransferList() {
-		return this.getPendingTransferList();
+		return this.pendingTransactionList;
 	}
 
 	private void initData() {

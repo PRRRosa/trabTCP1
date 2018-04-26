@@ -36,6 +36,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	public AccountOperationServiceImpl(Database database) {
 		this.database = database;
 	}
+
 	
 	public void authenticateTransaction(int transferIndex) {
 		for(Iterator<Transfer> transferSearch = database.getCurrentAccount(database.getPendingTransfer(transferIndex).getAccount().getId()).getTransfers().iterator(); transferSearch.hasNext();) {
@@ -56,6 +57,9 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		}
 	}
 	
+
+
+      
 
 	@Override
 	public Deposit deposit(long operationLocation, long branch,
@@ -140,7 +144,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 				firstDay.getTime(), lastDay.getTime());
 	}
 	
-	public List<Transfer> listPendingTransfers() {
+	public List<Transfer> listPendingTransfers() throws BusinessException {
 		return database.getPendingTransferList();
 	}
 
@@ -188,7 +192,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		}
 		return transfer;
 	}
-
+  
 	@Override
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException {

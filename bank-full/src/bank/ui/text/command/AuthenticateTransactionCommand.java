@@ -28,8 +28,8 @@ public class AuthenticateTransactionCommand extends Command{
 			for(int i=0;i<PendingTransfer.size();i++) {
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 				System.out.print(i + ": ");
-				System.out.println("Valor"+ ":" +  Double.toString(PendingTransfer.get(i).getAmount()));
-				System.out.println("Data" + ":" + df.format(PendingTransfer.get(i).getDate()));
+				System.out.print("Valor"+ ":" +  Double.toString(PendingTransfer.get(i).getAmount()) + " ");
+				System.out.print("Data" + ":" + df.format(PendingTransfer.get(i).getDate()) + " ");
 				System.out.println("Localiza��o"+":"+ PendingTransfer.get(i).getAccount().toString());	
 			}
 		}
